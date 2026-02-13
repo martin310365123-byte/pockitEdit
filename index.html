@@ -8,9 +8,9 @@
 <meta name="description" content="pockitEdit：Windows 上的 AI 自動剪輯工具。去無聲段、字幕自動生成與硬燒、隨機 BGM + Ducking、一鍵合成。">
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=21">
-<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png?v=21">
-<link rel="icon" href="./favicon.ico?v=21">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=20">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png?v=20">
+<link rel="icon" href="./favicon.ico?v=20" sizes="any">
 
 <meta name="theme-color" content="#0b0d12">
 
@@ -35,24 +35,23 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:30px 80px;
+  padding:20px 60px;
 }
 
 .logo{
-  height:70px;
+  height:60px;
 }
 
-section{
-  padding:100px 80px;
+.hero{
+  padding:80px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-h1{
+.hero h1{
   font-size:60px;
-}
-
-h2{
-  font-size:40px;
-  margin-bottom:40px;
+  line-height:1.2;
 }
 
 .btn{
@@ -65,74 +64,16 @@ h2{
   color:#000;
 }
 
-.hero{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
 .video-wrapper{
-  width:100%;
+  margin:80px auto;
+  width:90%;
   max-width:1200px;
-  margin:auto;
 }
 
 .video-wrapper iframe{
   width:100%;
   height:600px;
   border-radius:16px;
-}
-
-.pricing-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
-
-.card{
-  background:#121722;
-  padding:30px;
-  border-radius:20px;
-}
-
-.reviews-section{
-  background:#0d1118;
-}
-
-.reviews-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
-
-.review-card{
-  background:#121722;
-  padding:30px;
-  border-radius:20px;
-  transition:all .3s ease;
-}
-
-.review-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 20px 40px rgba(0,0,0,.4);
-}
-
-.review-stars{
-  color:#ffd700;
-  margin-bottom:10px;
-}
-
-.review-user{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  margin-top:20px;
-}
-
-.review-user img{
-  width:50px;
-  height:50px;
-  border-radius:50%;
 }
 
 .modal{
@@ -156,7 +97,8 @@ h2{
 <body>
 
 <header>
-  <img src="./assets/logo.png" class="logo"
+  <img src="./assets/logo.png" 
+       class="logo"
        onerror="this.src='./assets/logo-fallback.png';">
 </header>
 
@@ -169,71 +111,16 @@ h2{
 
 <section class="video-wrapper">
   <iframe 
-    src="https://www.youtube-nocookie.com/embed/4ekbRZQI_HQ"
+    src="https://www.youtube-nocookie.com/embed/4ekbRZQI_HQ" 
     allowfullscreen>
   </iframe>
-</section>
-
-<section>
-  <h2>方案</h2>
-  <div class="pricing-grid">
-    <div class="card">
-      <h3>Free</h3>
-      <p>基本去無聲 + 字幕 + BGM</p>
-    </div>
-    <div class="card">
-      <h3>Pro</h3>
-      <p>NT$490 / 月</p>
-    </div>
-    <div class="card">
-      <h3>商用</h3>
-      <p>客製化方案</p>
-    </div>
-  </div>
-</section>
-
-<section class="reviews-section">
-  <h2>用戶怎麼說</h2>
-  <div class="reviews-grid">
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p>剪輯時間縮短 70%，真的很誇張。</p>
-      <div class="review-user">
-        <img src="https://i.pravatar.cc/60?img=3">
-        <div>Eric Lin</div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p>字幕準確度很高，BGM 自動壓低超自然。</p>
-      <div class="review-user">
-        <img src="https://i.pravatar.cc/60?img=5">
-        <div>Maggie Chen</div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p>批次處理功能幫助團隊節省大量時間。</p>
-      <div class="review-user">
-        <img src="https://i.pravatar.cc/60?img=8">
-        <div>Jason Wu</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>常見問題</h2>
-  <p><strong>需要網路嗎？</strong><br>
-  不需要，pockitEdit 可於 Windows 本機離線執行。</p>
 </section>
 
 <!-- 同意書 -->
 <div class="modal" id="consentModal">
   <div class="modal-content">
     <h2>安裝同意書</h2>
+    <p>下載前請同意最終使用者授權條款。</p>
     <label>
       <input type="checkbox" id="agreeCheck">
       我已閱讀並同意條款
@@ -259,6 +146,7 @@ agreeBtn.addEventListener('click', ()=>{
     return;
   }
 
+  // GA 下載追蹤
   if(typeof gtag !== "undefined"){
     gtag('event','download_click',{
       event_category:'engagement',
@@ -270,6 +158,7 @@ agreeBtn.addEventListener('click', ()=>{
   setTimeout(()=>{
     window.location.href="./download.html";
   },150);
+
 });
 </script>
 
