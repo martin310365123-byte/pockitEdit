@@ -6,13 +6,13 @@
   <title>pockitEdit — 官方網站</title>
   <meta name="description" content="pockitEdit：Windows 上的 AI 自動剪輯工具。去無聲段、字幕自動生成與硬燒、隨機 BGM + Ducking、一鍵合成。" />
 
-  <!-- Favicons（記得你的檔名要存在；v=21 可破快取） -->
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=21">
-  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png?v=21">
-  <link rel="icon" href="./favicon.ico?v=21" sizes="any">
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=22">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png?v=22">
+  <link rel="icon" href="./favicon.ico?v=22" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=22">
   <meta name="theme-color" content="#0b0d12" />
 
-  <!-- Open Graph（分享預覽，可自行換圖） -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="pockitEdit — 官方網站">
   <meta property="og:description" content="AI 自動剪輯：去無聲、字幕、BGM Ducking、一鍵合成。">
@@ -30,51 +30,48 @@
   <style>
     :root{
       --bg:#0b0d12;
-      --bg2:#0d1118;
       --card:#10131a;
       --card2:#121722;
       --text:#e8edf7;
       --muted:#b7c0d1;
       --bd:rgba(255,255,255,.10);
-      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --shadow:0 18px 60px rgba(0,0,0,.38);
       --radius:20px;
       --acc:#8bb3ff;
       --acc2:#8be58b;
-
       --container:1200px;
-      --padX: clamp(18px, 4vw, 72px);
+      --padX:clamp(18px,4vw,72px);
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+
     body{
       margin:0;
-      background: radial-gradient(1200px 600px at 50% 0%, rgba(139,179,255,.10), transparent 60%),
-                  radial-gradient(900px 500px at 20% 20%, rgba(139,229,139,.08), transparent 55%),
-                  var(--bg);
-      color:var(--text);
-      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans TC",sans-serif;
+      background:#0b0d12;
+      color:#e8edf7;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans TC",sans-serif;
       line-height:1.6;
       overflow-x:hidden;
     }
 
-    a{ color:inherit; text-decoration:none; }
-    .container{ max-width:var(--container); margin:0 auto; padding:0 var(--padX); }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--container);margin:0 auto;padding:0 var(--padX)}
 
-    /* ===== Top Nav ===== */
     .topbar{
       position:sticky;
       top:0;
       z-index:50;
-      background: linear-gradient(180deg, rgba(11,13,18,.92), rgba(11,13,18,.65));
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      background:rgba(11,13,18,.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
+
     .nav{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding: 14px 0;
+      padding:14px 0;
       gap:16px;
     }
 
@@ -84,19 +81,22 @@
       gap:12px;
       min-width:200px;
     }
+
     .brand img{
       width:48px;
       height:48px;
       object-fit:contain;
       border-radius:12px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.06);
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.06);
       padding:6px;
     }
+
     .brand .name{
       font-weight:700;
       letter-spacing:.2px;
     }
+
     .brand .tag{
       color:var(--muted);
       font-size:12px;
@@ -110,23 +110,25 @@
       flex-wrap:wrap;
       justify-content:flex-end;
     }
+
     .menu a{
-      color: rgba(232,237,247,.86);
+      color:rgba(232,237,247,.86);
       font-weight:600;
       font-size:14px;
       padding:10px 10px;
       border-radius:12px;
       transition:.2s;
     }
+
     .menu a:hover{
-      background: rgba(255,255,255,.06);
-      color: #fff;
+      background:rgba(255,255,255,.06);
+      color:#fff;
     }
 
     .btn{
       border:0;
-      border-radius: 14px;
-      padding: 12px 16px;
+      border-radius:14px;
+      padding:12px 16px;
       font-weight:800;
       cursor:pointer;
       display:inline-flex;
@@ -137,249 +139,322 @@
       user-select:none;
       white-space:nowrap;
     }
-    .btn.primary{
-      background: linear-gradient(180deg, rgba(139,179,255,1), rgba(139,179,255,.85));
-      color:#0b0d12;
-      box-shadow: 0 12px 30px rgba(139,179,255,.25);
-    }
-    .btn.primary:hover{ transform: translateY(-1px); }
-    .btn.secondary{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      color: var(--text);
-    }
-    .btn.secondary:hover{ background: rgba(255,255,255,.09); }
 
-    /* ===== Hero (重點：不使用 100vh，避免卡住) ===== */
-    .hero{
-      padding: 72px 0 28px;
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(139,179,255,1), rgba(139,179,255,.86));
+      color:#0b0d12;
+      box-shadow:0 12px 30px rgba(139,179,255,.25);
     }
+
+    .btn.primary:hover{transform:translateY(-1px)}
+
+    .btn.secondary{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--text);
+    }
+
+    .btn.secondary:hover{
+      background:rgba(255,255,255,.09);
+    }
+
+    .hero{
+      padding:72px 0 28px;
+    }
+
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 32px;
-      align-items: center;
+      grid-template-columns:1.05fr .95fr;
+      gap:32px;
+      align-items:center;
     }
-    @media (max-width: 980px){
-      .heroGrid{ grid-template-columns: 1fr; }
+
+    @media (max-width:980px){
+      .heroGrid{grid-template-columns:1fr}
     }
 
     .heroCard{
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 34px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:34px;
     }
+
     .h1{
-      font-size: clamp(38px, 4.2vw, 64px);
+      font-size:clamp(38px,4.2vw,64px);
       line-height:1.08;
-      margin: 0 0 14px;
-      letter-spacing: .4px;
+      margin:0 0 14px;
+      letter-spacing:.4px;
     }
+
     .lead{
-      color: rgba(232,237,247,.86);
-      font-size: 16px;
-      margin: 0 0 18px;
+      color:rgba(232,237,247,.86);
+      font-size:16px;
+      margin:0 0 18px;
     }
+
     .chips{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      margin: 10px 0 22px;
+      margin:10px 0 22px;
     }
+
     .chip{
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.12);
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
       font-weight:700;
-      color: rgba(232,237,247,.88);
-      font-size: 13px;
+      color:rgba(232,237,247,.88);
+      font-size:13px;
     }
+
     .ctaRow{
       display:flex;
       gap:12px;
       flex-wrap:wrap;
       align-items:center;
-      margin-top: 8px;
+      margin-top:8px;
     }
 
-    /* 右側示意卡 */
     .codeCard{
-      background: radial-gradient(800px 400px at 50% 0%, rgba(139,179,255,.10), transparent 55%),
-                  rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:20px;
     }
+
     .terminal{
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(10,12,18,.65);
-      padding: 16px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 13px;
-      color: rgba(232,237,247,.92);
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(10,12,18,.75);
+      padding:16px;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+      font-size:13px;
+      color:rgba(232,237,247,.92);
       overflow:auto;
-      max-height: 320px;
+      max-height:320px;
     }
+
     .steps{
       display:flex;
       gap:14px;
       flex-wrap:wrap;
-      margin-top: 12px;
-      color: rgba(232,237,247,.82);
+      margin-top:12px;
+      color:rgba(232,237,247,.82);
       font-weight:700;
-      font-size: 13px;
+      font-size:13px;
     }
 
-    /* ===== Sections ===== */
     .section{
-      padding: 68px 0;
-    }
-    .sectionTitle{
-      font-size: 34px;
-      margin: 0 0 14px;
-    }
-    .sectionSub{
-      color: rgba(232,237,247,.70);
-      margin: 0 0 26px;
-    }
-    .panel{
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 28px;
+      padding:68px 0;
     }
 
-    /* ===== Pricing ===== */
+    .sectionTitle{
+      font-size:34px;
+      margin:0 0 14px;
+    }
+
+    .sectionSub{
+      color:rgba(232,237,247,.70);
+      margin:0 0 26px;
+    }
+
+    .panel{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      box-shadow:0 18px 60px rgba(0,0,0,.35);
+      padding:28px;
+    }
+
     .pricingGrid{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
     }
-    @media (max-width: 980px){
-      .pricingGrid{ grid-template-columns: 1fr; }
-    }
-    .plan{
-      background: rgba(18,23,34,.75);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 18px;
-      padding: 22px;
-      min-height: 180px;
-    }
-    .plan .kicker{ color: rgba(139,179,255,.92); font-weight:900; letter-spacing:.2px; }
-    .plan .price{ font-size: 34px; font-weight:1000; margin: 8px 0 10px; }
-    .plan ul{ margin: 10px 0 0 20px; color: rgba(232,237,247,.84); }
-    .plan li{ margin: 6px 0; }
 
-    /* ===== Reviews ===== */
+    @media (max-width:980px){
+      .pricingGrid{grid-template-columns:1fr}
+    }
+
+    .plan{
+      background:rgba(18,23,34,.82);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:22px;
+      min-height:180px;
+    }
+
+    .plan .kicker{
+      color:rgba(139,179,255,.95);
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+
+    .plan .price{
+      font-size:34px;
+      font-weight:1000;
+      margin:8px 0 10px;
+    }
+
+    .plan ul{
+      margin:10px 0 0 20px;
+      color:rgba(232,237,247,.84);
+    }
+
+    .plan li{
+      margin:6px 0;
+    }
+
     .reviewsWrap{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
     }
-    @media (max-width: 980px){
-      .reviewsWrap{ grid-template-columns: 1fr; }
+
+    @media (max-width:980px){
+      .reviewsWrap{grid-template-columns:1fr}
     }
+
     .review{
-      background: rgba(18,23,34,.75);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 18px;
-      padding: 22px;
-      transition: .2s;
+      background:rgba(18,23,34,.82);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:24px;
+      transition:.2s;
     }
+
     .review:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 22px 55px rgba(0,0,0,.45);
+      transform:translateY(-4px);
+      box-shadow:0 18px 40px rgba(0,0,0,.28);
     }
-    .stars{ color:#ffd700; letter-spacing:1px; margin-bottom: 10px; }
-    .review .text{ color: rgba(232,237,247,.88); }
+
+    .stars{
+      color:#ffd700;
+      letter-spacing:1px;
+      margin-bottom:12px;
+      font-size:20px;
+    }
+
+    .review .text{
+      color:rgba(232,237,247,.9);
+      font-size:16px;
+      line-height:1.8;
+      min-height:110px;
+    }
+
     .who{
       display:flex;
       align-items:center;
-      gap: 12px;
-      margin-top: 16px;
+      gap:12px;
+      margin-top:18px;
     }
+
     .avatar{
-      width: 46px; height:46px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.12);
+      width:48px;
+      height:48px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
       display:grid;
       place-items:center;
-      font-weight:1000;
-      color: rgba(232,237,247,.85);
+      font-weight:900;
+      color:rgba(232,237,247,.88);
+      flex-shrink:0;
     }
-    .who .name{ font-weight:900; }
-    .who .role{ font-size: 12px; color: rgba(232,237,247,.65); margin-top:2px; }
 
-    /* ===== FAQ ===== */
-    .faq dl{ margin:0; }
+    .who .name{
+      font-weight:800;
+      color:#fff;
+    }
+
+    .who .role{
+      font-size:13px;
+      color:rgba(232,237,247,.62);
+      margin-top:2px;
+    }
+
+    .faq dl{margin:0}
+
     .faq dt{
-      font-weight: 1000;
-      margin: 18px 0 6px;
-      color: rgba(232,237,247,.95);
-    }
-    .faq dd{
-      margin: 0 0 12px 0;
-      color: rgba(232,237,247,.78);
+      font-weight:1000;
+      margin:18px 0 6px;
+      color:rgba(232,237,247,.95);
     }
 
-    /* ===== Video (點擊才載入，不阻塞) ===== */
+    .faq dd{
+      margin:0 0 12px 0;
+      color:rgba(232,237,247,.78);
+    }
+
     .videoShell{
       position:relative;
       width:100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 18px;
+      aspect-ratio:16 / 9;
+      border-radius:18px;
       overflow:hidden;
-      background: #0f1420;
-      border: 1px solid rgba(255,255,255,.08);
-      box-shadow: var(--shadow);
+      background:#0f1420;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
       cursor:pointer;
     }
+
     .videoPoster{
-      position:absolute; inset:0;
-      width:100%; height:100%;
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
       object-fit:cover;
-      transform: scale(1.03);
-      filter: saturate(1.05) contrast(1.02);
+      transform:scale(1.03);
+      filter:saturate(1.05) contrast(1.02);
     }
+
     .videoOverlay{
-      position:absolute; inset:0;
+      position:absolute;
+      inset:0;
       display:flex;
       align-items:center;
       justify-content:center;
       flex-direction:column;
       gap:12px;
-      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.58));
+      background:linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.58));
     }
+
     .playBtn{
-      width: 86px; height:86px;
-      border-radius: 999px;
+      width:86px;
+      height:86px;
+      border-radius:999px;
       display:grid;
       place-items:center;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.18);
-      backdrop-filter: blur(10px);
-      font-size: 34px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.18);
+      backdrop-filter:blur(10px);
+      font-size:34px;
     }
-    .videoTip{ opacity:.86; font-size: 14px; }
+
+    .videoTip{
+      opacity:.86;
+      font-size:14px;
+    }
+
     .videoIframe{
-      position:absolute; inset:0;
-      width:100%; height:100%;
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
       border:0;
     }
 
-    /* ===== Footer ===== */
     footer{
-      padding: 26px 0 36px;
-      border-top: 1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.10);
+      padding:26px 0 36px;
+      border-top:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.10);
     }
+
     .footNav{
       display:flex;
       gap:16px;
@@ -387,77 +462,84 @@
       align-items:center;
       justify-content:space-between;
     }
+
     .footLinks{
       display:flex;
       gap:14px;
       flex-wrap:wrap;
       align-items:center;
-      color: rgba(232,237,247,.76);
+      color:rgba(232,237,247,.76);
       font-weight:700;
-      font-size: 14px;
-    }
-    .copy{
-      color: rgba(232,237,247,.55);
-      font-size: 13px;
-      margin-top: 10px;
+      font-size:14px;
     }
 
-    /* ===== Consent Modal ===== */
+    .copy{
+      color:rgba(232,237,247,.55);
+      font-size:13px;
+      margin-top:10px;
+    }
+
     .modal{
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,.62);
-      z-index: 100;
-      padding: 18px;
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,.62);
+      z-index:100;
+      padding:18px;
     }
+
     .modalCard{
-      width: min(520px, 96vw);
-      background: rgba(16,19,26,.96);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      box-shadow: 0 30px 90px rgba(0,0,0,.55);
-      padding: 22px 22px 18px;
+      width:min(520px,96vw);
+      background:rgba(16,19,26,.96);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      box-shadow:0 30px 90px rgba(0,0,0,.55);
+      padding:22px 22px 18px;
     }
+
     .modalTitle{
       margin:0 0 8px;
-      font-size: 22px;
-      font-weight: 1000;
+      font-size:22px;
+      font-weight:1000;
     }
+
     .modalText{
-      margin: 0 0 14px;
-      color: rgba(232,237,247,.80);
+      margin:0 0 14px;
+      color:rgba(232,237,247,.80);
     }
+
     .checkRow{
       display:flex;
       gap:10px;
       align-items:flex-start;
-      padding: 12px;
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 14px;
-      background: rgba(255,255,255,.03);
+      padding:12px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
     }
-    .checkRow input{ margin-top: 4px; }
+
+    .checkRow input{margin-top:4px}
+
     .modalActions{
       display:flex;
       gap:10px;
       justify-content:flex-end;
-      margin-top: 14px;
+      margin-top:14px;
       flex-wrap:wrap;
     }
+
     .hint{
-      margin-top: 10px;
-      font-size: 12px;
-      color: rgba(232,237,247,.60);
+      margin-top:10px;
+      font-size:12px;
+      color:rgba(232,237,247,.60);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Top bar -->
   <div class="topbar">
     <div class="container">
       <div class="nav">
@@ -481,7 +563,6 @@
     </div>
   </div>
 
-  <!-- Hero -->
   <div id="top" class="hero">
     <div class="container">
       <div class="heroGrid">
@@ -505,7 +586,7 @@
         </div>
 
         <div class="codeCard">
-          <div class="terminal" aria-label="command preview">
+          <div class="terminal">
 $ pockitedit run \
   --process-all \
   --stt --stt-model small --stt-device cpu --stt-compute int8 \
@@ -531,7 +612,6 @@ $ pockitedit run \
     </div>
   </div>
 
-  <!-- Features -->
   <section id="features" class="section">
     <div class="container">
       <h2 class="sectionTitle">功能</h2>
@@ -568,23 +648,21 @@ $ pockitedit run \
     </div>
   </section>
 
-  <!-- How / Tutorial video (click-to-play) -->
   <section id="how" class="section">
     <div class="container">
       <h2 class="sectionTitle">使用方式</h2>
-      <p class="sectionSub">為避免 YouTube 影響載入速度，影片採「點一下才開始載入播放」。</p>
+      <p class="sectionSub">點擊影片才開始載入播放，避免影響整體頁面速度。</p>
 
       <div class="videoShell" id="videoShell" role="button" tabindex="0" aria-label="播放教學影片">
         <img class="videoPoster" src="https://img.youtube.com/vi/4ekbRZQI_HQ/hqdefault.jpg" alt="pockitEdit 教學影片縮圖">
         <div class="videoOverlay">
           <div class="playBtn">▶</div>
-          <div class="videoTip">點擊播放（不會卡住頁面）</div>
+          <div class="videoTip">點擊播放</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Pricing -->
   <section id="pricing" class="section">
     <div class="container">
       <h2 class="sectionTitle">方案（暫定）</h2>
@@ -624,56 +702,55 @@ $ pockitedit run \
     </div>
   </section>
 
-  <!-- Reviews -->
   <section id="reviews" class="section">
     <div class="container">
       <h2 class="sectionTitle">用戶評論</h2>
-      <p class="sectionSub">你可以把這裡改成真實封測者回饋（建議 3–5 則最有感）。</p>
+      <p class="sectionSub">以下內容可替換成真實封測用戶的回饋。</p>
 
       <div class="panel">
         <div class="reviewsWrap">
+
           <div class="review">
             <div class="stars">★★★★★</div>
-            <div class="text">「原本剪教學影片要 2–3 小時，用 pockitEdit 後 30 分鐘內就能完成。」</div>
+            <div class="text">「這裡放第一位真實用戶的評論內容。建議 1～2 句，內容越具體越有說服力。」</div>
             <div class="who">
-              <div class="avatar">E</div>
+              <div class="avatar">A</div>
               <div>
-                <div class="name">Eric Lin</div>
-                <div class="role">YouTube 教學創作者</div>
+                <div class="name">用戶名稱 1</div>
+                <div class="role">身份 / 職稱 / 領域</div>
               </div>
             </div>
           </div>
 
           <div class="review">
             <div class="stars">★★★★★</div>
-            <div class="text">「字幕準、BGM Ducking 很自然，音量不用再一段段手動調。」</div>
+            <div class="text">「這裡放第二位真實用戶的評論內容，例如：字幕準確、節省多少時間、哪個功能最有幫助。」</div>
             <div class="who">
-              <div class="avatar">M</div>
+              <div class="avatar">B</div>
               <div>
-                <div class="name">Maggie Chen</div>
-                <div class="role">Podcast 主持人</div>
+                <div class="name">用戶名稱 2</div>
+                <div class="role">身份 / 職稱 / 領域</div>
               </div>
             </div>
           </div>
 
           <div class="review">
             <div class="stars">★★★★★</div>
-            <div class="text">「批次處理像救命功能，團隊影片產出效率直接提升。」</div>
+            <div class="text">「這裡放第三位真實用戶的評論內容。建議寫使用前後差異，會比空泛稱讚更有效。」</div>
             <div class="who">
-              <div class="avatar">J</div>
+              <div class="avatar">C</div>
               <div>
-                <div class="name">Jason Wu</div>
-                <div class="role">企業培訓部門</div>
+                <div class="name">用戶名稱 3</div>
+                <div class="role">身份 / 職稱 / 領域</div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- FAQ -->
   <section id="faq" class="section">
     <div class="container">
       <h2 class="sectionTitle">常見問題</h2>
@@ -693,7 +770,6 @@ $ pockitedit run \
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footNav">
@@ -713,7 +789,6 @@ $ pockitedit run \
     </div>
   </footer>
 
-  <!-- Consent Modal -->
   <div class="modal" id="consentModal" aria-hidden="true">
     <div class="modalCard" role="dialog" aria-modal="true" aria-label="安裝同意書">
       <div class="modalTitle">安裝同意書</div>
@@ -726,9 +801,7 @@ $ pockitedit run \
 
       <div class="checkRow">
         <input id="consentCheck" type="checkbox" />
-        <label for="consentCheck">
-          我已閱讀並同意上述條款，且年滿法定年齡。
-        </label>
+        <label for="consentCheck">我已閱讀並同意上述條款，且年滿法定年齡。</label>
       </div>
 
       <div class="modalActions">
@@ -741,20 +814,17 @@ $ pockitedit run \
   </div>
 
   <script>
-    // ===== 年份 =====
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // ===== Logo fallback（多路徑自動補救）=====
     (function(){
       const img = document.getElementById('brandLogo');
       const candidates = [
         "./assets/pockitEdit_logo_transparent_2000.png",
         "./assets/pockitEdit_logo_transparent.png",
+        "./assets/logo-pockitEdit-1024.png",
         "./assets/logo.png",
         "./assets/logo-pocketeditor-transparent.png",
-        "./assets/logo-pocketeditor.png",
-        "./logo.png",
-        "./logo.png?v=1"
+        "./logo.png"
       ];
       let i = 0;
       function tryNext(){
@@ -765,7 +835,6 @@ $ pockitedit run \
       tryNext();
     })();
 
-    // ===== 教學影片：點擊才載入（不阻塞頁面）=====
     (function(){
       const YT_ID = "4ekbRZQI_HQ";
       const shell = document.getElementById("videoShell");
@@ -791,7 +860,6 @@ $ pockitedit run \
       });
     })();
 
-    // ===== 下載同意書 + GA 事件追蹤 =====
     (function(){
       const modal = document.getElementById('consentModal');
       const check = document.getElementById('consentCheck');
@@ -828,7 +896,6 @@ $ pockitedit run \
         if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
       });
 
-      // 套用到所有需要同意的下載按鈕
       document.querySelectorAll('[data-need-consent]').forEach(el=>{
         el.addEventListener('click', ()=>{
           const href = el.getAttribute('data-href') || el.dataset.href;
@@ -840,7 +907,6 @@ $ pockitedit run \
       btnAgree.addEventListener('click', ()=>{
         if (!pendingHref) return;
 
-        // ✅ GA 下載追蹤（你在 GA 會看到 download_click）
         if (typeof gtag !== "undefined") {
           gtag('event', 'download_click', {
             event_category: 'engagement',
@@ -849,7 +915,6 @@ $ pockitedit run \
           });
         }
 
-        // 讓 GA 有時間送出
         const go = pendingHref;
         closeModal();
         setTimeout(()=>{ window.location.href = go; }, 180);
