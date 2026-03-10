@@ -691,7 +691,7 @@ $ PockitEdit run \
       <p class="sectionSub">點擊影片才開始載入播放，避免影響整體頁面速度。</p>
 
       <div class="videoShell" id="videoShell" role="button" tabindex="0" aria-label="播放教學影片">
-        <img class="videoPoster" src="https://youtu.be/odU6a-afr4w/hqdefault.jpg" alt="PockitEdit 教學影片縮圖">
+        <img class="videoPoster" src="https://img.youtube.com/vi/odU6a-afr4w/maxresdefault.jpg" alt="PockitEdit 教學影片縮圖">
         <div class="videoOverlay">
           <div class="playBtn">▶</div>
           <div class="videoTip">點擊播放</div>
@@ -863,7 +863,7 @@ $ PockitEdit run \
     document.getElementById('y').textContent = new Date().getFullYear();
 
     (function(){
-      const YT_ID = "4ekbRZQI_HQ";
+      const YT_ID = "odU6a-afr4w";
       const shell = document.getElementById("videoShell");
       if (!shell) return;
 
@@ -871,7 +871,7 @@ $ PockitEdit run \
         const src = `https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&rel=0&modestbranding=1`;
         shell.innerHTML = `
           <iframe class="videoIframe"
-            src="${src}"
+            src="https://www.youtube-nocookie.com/embed/odU6a-afr4w?autoplay=1"
             title="PockitEdit 教學影片"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
