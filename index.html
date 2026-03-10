@@ -586,7 +586,7 @@
       <div class="nav">
         <a class="brand" href="#top" aria-label="PockitEdit">
           <!-- 這裡直接用和 EULA / 隱私權頁相同的 logo 檔 -->
-          <img id="brandLogo" src="./assets/logo-pockitEdit-1024.png?v=15" alt="PockitEdit logo">
+          <img id="site-logo" src="./assets/logo-PockitEdit-1024.png?v=15" alt="PockitEdit">
           <div>
             <div class="name">PockitEdit</div>
             <div class="tag">AI 自動剪輯工具（Windows / 離線）</div>
@@ -872,28 +872,6 @@ $ PockitEdit run \
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Logo fallback：首頁主路徑先用與 EULA/隱私權相同者
-    (function(){
-      const img = document.getElementById('brandLogo');
-      if (!img) return;
-
-      const candidates = [
-        "./assets/logo-pockitEdit-1024.png?v=15",
-        "./assets/logo-pockitEdit-1024.png",
-        "./assets/pockitEdit_logo_transparent_2000.png",
-        "./assets/pockitEdit_logo_transparent.png",
-        "./assets/logo.png",
-        "./logo.png"
-      ];
-
-      let i = 1; // 第一個已經在 src 用了
-      img.onerror = function(){
-        if (i < candidates.length){
-          img.src = candidates[i++];
-        }
-      };
-    })();
 
     (function(){
       const YT_ID = "4ekbRZQI_HQ";
