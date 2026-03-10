@@ -7,10 +7,10 @@
   <meta name="description" content="pockitEdit：Windows 上的 AI 自動剪輯工具。去無聲段、字幕自動生成與硬燒、隨機 BGM + Ducking、一鍵合成。" />
 
   <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=22">
-  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png?v=22">
-  <link rel="icon" href="./favicon.ico?v=22" sizes="any">
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=22">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=24">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png?v=24">
+  <link rel="icon" href="./favicon.ico?v=24" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=24">
   <meta name="theme-color" content="#0b0d12" />
 
   <meta property="og:type" content="website">
@@ -34,8 +34,9 @@
       --card2:#121722;
       --text:#e8edf7;
       --muted:#b7c0d1;
-      --bd:rgba(255,255,255,.10);
-      --shadow:0 18px 60px rgba(0,0,0,.38);
+      --line:rgba(255,255,255,.10);
+      --line-soft:rgba(255,255,255,.06);
+      --shadow:0 18px 50px rgba(0,0,0,.32);
       --radius:20px;
       --acc:#8bb3ff;
       --acc2:#8be58b;
@@ -48,15 +49,21 @@
 
     body{
       margin:0;
-      background:#0b0d12;
-      color:#e8edf7;
+      background:var(--bg);
+      color:var(--text);
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans TC",sans-serif;
       line-height:1.6;
       overflow-x:hidden;
     }
 
     a{color:inherit;text-decoration:none}
-    .container{max-width:var(--container);margin:0 auto;padding:0 var(--padX)}
+    img{display:block;max-width:100%}
+
+    .container{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:0 var(--padX);
+    }
 
     .topbar{
       position:sticky;
@@ -64,22 +71,22 @@
       z-index:50;
       background:rgba(11,13,18,.92);
       backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid var(--line-soft);
     }
 
     .nav{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:14px 0;
       gap:16px;
+      padding:14px 0;
     }
 
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
-      min-width:200px;
+      min-width:220px;
     }
 
     .brand img{
@@ -87,13 +94,13 @@
       height:48px;
       object-fit:contain;
       border-radius:12px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.06);
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line-soft);
       padding:6px;
     }
 
     .brand .name{
-      font-weight:700;
+      font-weight:800;
       letter-spacing:.2px;
     }
 
@@ -113,15 +120,15 @@
 
     .menu a{
       color:rgba(232,237,247,.86);
-      font-weight:600;
+      font-weight:700;
       font-size:14px;
       padding:10px 10px;
       border-radius:12px;
-      transition:.2s;
+      transition:.18s;
     }
 
     .menu a:hover{
-      background:rgba(255,255,255,.06);
+      background:rgba(255,255,255,.05);
       color:#fff;
     }
 
@@ -143,19 +150,21 @@
     .btn.primary{
       background:linear-gradient(180deg, rgba(139,179,255,1), rgba(139,179,255,.86));
       color:#0b0d12;
-      box-shadow:0 12px 30px rgba(139,179,255,.25);
+      box-shadow:0 10px 24px rgba(139,179,255,.22);
     }
 
-    .btn.primary:hover{transform:translateY(-1px)}
+    .btn.primary:hover{
+      transform:translateY(-1px);
+    }
 
     .btn.secondary{
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
       color:var(--text);
     }
 
     .btn.secondary:hover{
-      background:rgba(255,255,255,.09);
+      background:rgba(255,255,255,.08);
     }
 
     .hero{
@@ -173,11 +182,16 @@
       .heroGrid{grid-template-columns:1fr}
     }
 
-    .heroCard{
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    .heroCard,
+    .codeCard,
+    .panel{
+      background:rgba(255,255,255,.03);
       border:1px solid rgba(255,255,255,.08);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
+    }
+
+    .heroCard{
       padding:34px;
     }
 
@@ -204,7 +218,7 @@
     .chip{
       padding:8px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.04);
       font-weight:700;
       color:rgba(232,237,247,.88);
@@ -220,23 +234,20 @@
     }
 
     .codeCard{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
       padding:20px;
     }
 
     .terminal{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
-      background:rgba(10,12,18,.75);
+      background:rgba(10,12,18,.78);
       padding:16px;
       font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
       font-size:13px;
       color:rgba(232,237,247,.92);
       overflow:auto;
       max-height:320px;
+      white-space:pre-wrap;
     }
 
     .steps{
@@ -264,131 +275,45 @@
     }
 
     .panel{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:20px;
-      box-shadow:0 18px 60px rgba(0,0,0,.35);
       padding:28px;
     }
 
-    .pricingGrid{
+    .grid3{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:18px;
     }
 
     @media (max-width:980px){
-      .pricingGrid{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
     }
 
-    .plan{
+    .card{
       background:rgba(18,23,34,.82);
       border:1px solid rgba(255,255,255,.08);
       border-radius:18px;
       padding:22px;
-      min-height:180px;
     }
 
-    .plan .kicker{
+    .card .kicker{
       color:rgba(139,179,255,.95);
       font-weight:900;
       letter-spacing:.2px;
     }
 
-    .plan .price{
+    .card .price{
       font-size:34px;
       font-weight:1000;
       margin:8px 0 10px;
     }
 
-    .plan ul{
+    .card ul{
       margin:10px 0 0 20px;
       color:rgba(232,237,247,.84);
     }
 
-    .plan li{
+    .card li{
       margin:6px 0;
-    }
-
-    .reviewsWrap{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-    }
-
-    @media (max-width:980px){
-      .reviewsWrap{grid-template-columns:1fr}
-    }
-
-    .review{
-      background:rgba(18,23,34,.82);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:18px;
-      padding:24px;
-      transition:.2s;
-    }
-
-    .review:hover{
-      transform:translateY(-4px);
-      box-shadow:0 18px 40px rgba(0,0,0,.28);
-    }
-
-    .stars{
-      color:#ffd700;
-      letter-spacing:1px;
-      margin-bottom:12px;
-      font-size:20px;
-    }
-
-    .review .text{
-      color:rgba(232,237,247,.9);
-      font-size:16px;
-      line-height:1.8;
-      min-height:110px;
-    }
-
-    .who{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-top:18px;
-    }
-
-    .avatar{
-      width:48px;
-      height:48px;
-      border-radius:999px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      display:grid;
-      place-items:center;
-      font-weight:900;
-      color:rgba(232,237,247,.88);
-      flex-shrink:0;
-    }
-
-    .who .name{
-      font-weight:800;
-      color:#fff;
-    }
-
-    .who .role{
-      font-size:13px;
-      color:rgba(232,237,247,.62);
-      margin-top:2px;
-    }
-
-    .faq dl{margin:0}
-
-    .faq dt{
-      font-weight:1000;
-      margin:18px 0 6px;
-      color:rgba(232,237,247,.95);
-    }
-
-    .faq dd{
-      margin:0 0 12px 0;
-      color:rgba(232,237,247,.78);
     }
 
     .videoShell{
@@ -421,7 +346,7 @@
       justify-content:center;
       flex-direction:column;
       gap:12px;
-      background:linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.58));
+      background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.58));
     }
 
     .playBtn{
@@ -447,6 +372,134 @@
       width:100%;
       height:100%;
       border:0;
+    }
+
+    /* review form */
+    .reviewForm{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      max-width:780px;
+    }
+
+    .formGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    @media (max-width:768px){
+      .formGrid{grid-template-columns:1fr}
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .field label{
+      font-weight:700;
+      color:rgba(232,237,247,.92);
+    }
+
+    .field input[type="text"],
+    .field select,
+    .field textarea{
+      width:100%;
+      background:rgba(18,23,34,.82);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      color:#e8edf7;
+      padding:14px 16px;
+      font-size:15px;
+      outline:none;
+      transition:.18s;
+    }
+
+    .field input[type="text"]:focus,
+    .field select:focus,
+    .field textarea:focus{
+      border-color:rgba(139,179,255,.65);
+      box-shadow:0 0 0 3px rgba(139,179,255,.12);
+    }
+
+    .field textarea{
+      resize:vertical;
+      min-height:140px;
+    }
+
+    .ratingGroup{
+      display:flex;
+      flex-direction:row-reverse;
+      justify-content:flex-end;
+      gap:6px;
+    }
+
+    .ratingGroup input{
+      display:none;
+    }
+
+    .ratingGroup label{
+      font-size:34px;
+      color:rgba(255,255,255,.18);
+      cursor:pointer;
+      transition:.15s;
+      line-height:1;
+    }
+
+    .ratingGroup label:hover,
+    .ratingGroup label:hover ~ label{
+      color:#ffd700;
+    }
+
+    .ratingGroup input:checked ~ label{
+      color:#ffd700;
+    }
+
+    .checkField{
+      flex-direction:row;
+      align-items:flex-start;
+      gap:10px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+      padding:14px 16px;
+    }
+
+    .checkField input{
+      margin-top:4px;
+    }
+
+    .checkField label{
+      font-weight:500;
+      color:rgba(232,237,247,.78);
+    }
+
+    .formActions{
+      display:flex;
+      justify-content:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .formNote{
+      font-size:13px;
+      color:rgba(232,237,247,.58);
+      margin:0;
+    }
+
+    .faq dl{margin:0}
+
+    .faq dt{
+      font-weight:1000;
+      margin:18px 0 6px;
+      color:rgba(232,237,247,.95);
+    }
+
+    .faq dd{
+      margin:0 0 12px 0;
+      color:rgba(232,237,247,.78);
     }
 
     footer{
@@ -520,7 +573,9 @@
       background:rgba(255,255,255,.03);
     }
 
-    .checkRow input{margin-top:4px}
+    .checkRow input{
+      margin-top:4px;
+    }
 
     .modalActions{
       display:flex;
@@ -555,7 +610,7 @@
           <a href="#features">功能</a>
           <a href="#how">使用方式</a>
           <a href="#pricing">方案</a>
-          <a href="#reviews">用戶評論</a>
+          <a href="#reviews">用戶評價</a>
           <a href="#faq">常見問題</a>
           <a href="#download" class="btn primary" style="padding:10px 14px;">下載</a>
         </div>
@@ -618,8 +673,8 @@ $ pockitedit run \
       <p class="sectionSub">以「節省時間」為核心：讓你更快產出可上傳的影片。</p>
 
       <div class="panel">
-        <div class="pricingGrid">
-          <div class="plan">
+        <div class="grid3">
+          <div class="card">
             <div class="kicker">自動去無聲</div>
             <div class="price" style="font-size:22px;">Cut Silence</div>
             <ul>
@@ -627,15 +682,17 @@ $ pockitedit run \
               <li>保留語意節奏</li>
             </ul>
           </div>
-          <div class="plan">
+
+          <div class="card">
             <div class="kicker">字幕生成與硬燒</div>
             <div class="price" style="font-size:22px;">Auto Captions</div>
             <ul>
               <li>支援中文流程</li>
-              <li>ASS/SRT + burn-in</li>
+              <li>ASS / SRT + burn-in</li>
             </ul>
           </div>
-          <div class="plan">
+
+          <div class="card">
             <div class="kicker">隨機 BGM + Ducking</div>
             <div class="price" style="font-size:22px;">Smart BGM</div>
             <ul>
@@ -668,8 +725,8 @@ $ pockitedit run \
       <h2 class="sectionTitle">方案（暫定）</h2>
 
       <div class="panel">
-        <div class="pricingGrid">
-          <div class="plan">
+        <div class="grid3">
+          <div class="card">
             <div class="kicker">個人封測</div>
             <div class="price">Free</div>
             <ul>
@@ -678,9 +735,9 @@ $ pockitedit run \
             </ul>
           </div>
 
-          <div class="plan">
+          <div class="card">
             <div class="kicker">個人 Pro</div>
-            <div class="price">NT$ 490 / 月</div>
+            <div class="price">Coming soon</div>
             <ul>
               <li>高品質 STT 模型</li>
               <li>批次處理與佇列</li>
@@ -688,7 +745,7 @@ $ pockitedit run \
             </ul>
           </div>
 
-          <div class="plan">
+          <div class="card">
             <div class="kicker">商用</div>
             <div class="price">洽談</div>
             <ul>
@@ -704,49 +761,62 @@ $ pockitedit run \
 
   <section id="reviews" class="section">
     <div class="container">
-      <h2 class="sectionTitle">用戶評論</h2>
-      <p class="sectionSub">以下內容可替換成真實封測用戶的回饋。</p>
+      <h2 class="sectionTitle">用戶評價</h2>
+      <p class="sectionSub">歡迎留下你的使用心得與評分，幫助我們持續優化 pockitEdit。</p>
 
       <div class="panel">
-        <div class="reviewsWrap">
+        <form id="reviewForm" class="reviewForm" action="https://formspree.io/f/mreypzel" method="POST">
+          <input type="hidden" name="_redirect" value="https://pockitedit.com/#reviews">
+          <input type="text" name="_gotcha" style="display:none">
 
-          <div class="review">
-            <div class="stars">★★★★★</div>
-            <div class="text">「這裡放第一位真實用戶的評論內容。建議 1～2 句，內容越具體越有說服力。」</div>
-            <div class="who">
-              <div class="avatar">A</div>
-              <div>
-                <div class="name">用戶名稱 1</div>
-                <div class="role">身份 / 職稱 / 領域</div>
-              </div>
+          <div class="formGrid">
+            <div class="field">
+              <label for="reviewName">你的名稱</label>
+              <input type="text" id="reviewName" name="name" placeholder="例如：Martin" required>
+            </div>
+
+            <div class="field">
+              <label for="reviewRole">身份 / 職稱</label>
+              <input type="text" id="reviewRole" name="role" placeholder="例如：YouTuber / 創作者">
             </div>
           </div>
 
-          <div class="review">
-            <div class="stars">★★★★★</div>
-            <div class="text">「這裡放第二位真實用戶的評論內容，例如：字幕準確、節省多少時間、哪個功能最有幫助。」</div>
-            <div class="who">
-              <div class="avatar">B</div>
-              <div>
-                <div class="name">用戶名稱 2</div>
-                <div class="role">身份 / 職稱 / 領域</div>
-              </div>
+          <div class="field">
+            <label>整體評分</label>
+            <div class="ratingGroup">
+              <input type="radio" id="star5" name="rating" value="5" required>
+              <label for="star5">★</label>
+
+              <input type="radio" id="star4" name="rating" value="4">
+              <label for="star4">★</label>
+
+              <input type="radio" id="star3" name="rating" value="3">
+              <label for="star3">★</label>
+
+              <input type="radio" id="star2" name="rating" value="2">
+              <label for="star2">★</label>
+
+              <input type="radio" id="star1" name="rating" value="1">
+              <label for="star1">★</label>
             </div>
           </div>
 
-          <div class="review">
-            <div class="stars">★★★★★</div>
-            <div class="text">「這裡放第三位真實用戶的評論內容。建議寫使用前後差異，會比空泛稱讚更有效。」</div>
-            <div class="who">
-              <div class="avatar">C</div>
-              <div>
-                <div class="name">用戶名稱 3</div>
-                <div class="role">身份 / 職稱 / 領域</div>
-              </div>
-            </div>
+          <div class="field">
+            <label for="reviewText">你的評價</label>
+            <textarea id="reviewText" name="review" rows="6" placeholder="歡迎分享你最喜歡的功能、節省了多少時間，或覺得哪裡還能更好。" required></textarea>
           </div>
 
-        </div>
+          <div class="field checkField">
+            <input type="checkbox" id="reviewConsent" name="consent" value="yes" required>
+            <label for="reviewConsent">我同意 pockitEdit 可將此評價整理後匿名或具名展示於網站 / 產品頁面。</label>
+          </div>
+
+          <div class="formActions">
+            <button type="submit" class="btn primary">送出評價</button>
+          </div>
+
+          <p class="formNote">第一次送出後，請到你的 Email 點擊 Formspree 的確認信，表單才會正式啟用。</p>
+        </form>
       </div>
     </div>
   </section>
@@ -775,7 +845,7 @@ $ pockitedit run \
       <div class="footNav">
         <div class="footLinks">
           <a href="./privacy.html">隱私權政策</a>
-          <a href="./eula.html">授權/EULA</a>
+          <a href="./eula.html">授權 / EULA</a>
           <a href="mailto:hello@pockitedit.com">聯絡我們</a>
         </div>
 
@@ -918,6 +988,21 @@ $ pockitedit run \
         const go = pendingHref;
         closeModal();
         setTimeout(()=>{ window.location.href = go; }, 180);
+      });
+    })();
+
+    (function(){
+      const reviewForm = document.getElementById('reviewForm');
+      if (!reviewForm) return;
+
+      reviewForm.addEventListener('submit', function(){
+        if (typeof gtag !== "undefined") {
+          gtag('event', 'review_submit', {
+            event_category: 'engagement',
+            event_label: 'formspree_review_form',
+            value: 1
+          });
+        }
       });
     })();
   </script>
