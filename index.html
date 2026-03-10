@@ -7,12 +7,13 @@
   <meta name="description" content="PockitEdit：Windows 上的 AI 自動剪輯工具。去無聲段、字幕自動生成與硬燒、隨機 BGM + Ducking、一鍵合成。" />
 
   <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=24">
-  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png?v=24">
-  <link rel="icon" href="./favicon.ico?v=24" sizes="any">
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=24">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=25">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png?v=25">
+  <link rel="icon" href="./favicon.ico?v=25" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=25">
   <meta name="theme-color" content="#0b0d12" />
 
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="PockitEdit — 官方網站">
   <meta property="og:description" content="AI 自動剪輯：去無聲、字幕、BGM Ducking、一鍵合成。">
@@ -39,14 +40,12 @@
       --shadow:0 18px 50px rgba(0,0,0,.32);
       --radius:20px;
       --acc:#8bb3ff;
-      --acc2:#8be58b;
       --container:1200px;
       --padX:clamp(18px,4vw,72px);
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
-
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       background:var(--bg);
@@ -90,18 +89,20 @@
     }
 
     .brand img{
-      width:48px;
-      height:48px;
+      width:56px;
+      height:56px;
       object-fit:contain;
-      border-radius:12px;
+      border-radius:14px;
       background:rgba(255,255,255,.04);
       border:1px solid var(--line-soft);
       padding:6px;
+      flex-shrink:0;
     }
 
     .brand .name{
       font-weight:800;
       letter-spacing:.2px;
+      font-size:20px;
     }
 
     .brand .tag{
@@ -153,9 +154,7 @@
       box-shadow:0 10px 24px rgba(139,179,255,.22);
     }
 
-    .btn.primary:hover{
-      transform:translateY(-1px);
-    }
+    .btn.primary:hover{transform:translateY(-1px)}
 
     .btn.secondary{
       background:rgba(255,255,255,.05);
@@ -180,20 +179,17 @@
 
     @media (max-width:980px){
       .heroGrid{grid-template-columns:1fr}
+      .menu{display:none}
     }
 
-    .heroCard,
-    .codeCard,
-    .panel{
+    .heroCard,.codeCard,.panel{
       background:rgba(255,255,255,.03);
       border:1px solid rgba(255,255,255,.08);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
     }
 
-    .heroCard{
-      padding:34px;
-    }
+    .heroCard{padding:34px}
 
     .h1{
       font-size:clamp(38px,4.2vw,64px);
@@ -233,9 +229,7 @@
       margin-top:8px;
     }
 
-    .codeCard{
-      padding:20px;
-    }
+    .codeCard{padding:20px}
 
     .terminal{
       border-radius:16px;
@@ -260,9 +254,7 @@
       font-size:13px;
     }
 
-    .section{
-      padding:68px 0;
-    }
+    .section{padding:68px 0}
 
     .sectionTitle{
       font-size:34px;
@@ -274,9 +266,7 @@
       margin:0 0 26px;
     }
 
-    .panel{
-      padding:28px;
-    }
+    .panel{padding:28px}
 
     .grid3{
       display:grid;
@@ -312,9 +302,7 @@
       color:rgba(232,237,247,.84);
     }
 
-    .card li{
-      margin:6px 0;
-    }
+    .card li{margin:6px 0}
 
     .videoShell{
       position:relative;
@@ -374,7 +362,6 @@
       border:0;
     }
 
-    /* review form */
     .reviewForm{
       display:flex;
       flex-direction:column;
@@ -404,7 +391,6 @@
     }
 
     .field input[type="text"],
-    .field select,
     .field textarea{
       width:100%;
       background:rgba(18,23,34,.82);
@@ -418,7 +404,6 @@
     }
 
     .field input[type="text"]:focus,
-    .field select:focus,
     .field textarea:focus{
       border-color:rgba(139,179,255,.65);
       box-shadow:0 0 0 3px rgba(139,179,255,.12);
@@ -436,9 +421,7 @@
       gap:6px;
     }
 
-    .ratingGroup input{
-      display:none;
-    }
+    .ratingGroup input{display:none}
 
     .ratingGroup label{
       font-size:34px;
@@ -599,10 +582,7 @@
     <div class="container">
       <div class="nav">
         <a class="brand" href="#top" aria-label="PockitEdit">
-              <header>
-      <div class="logo">
-        <img id="site-logo" src="./assets/logo-PockitEdit-1024.png?v=15" alt="PockitEdit">
-        <strong>PockitEdit</strong>
+          <img id="brandLogo" src="./assets/pockitEdit_logo_transparent_2000.png" alt="PockitEdit logo">
           <div>
             <div class="name">PockitEdit</div>
             <div class="tag">AI 自動剪輯工具（Windows / 離線）</div>
@@ -639,13 +619,13 @@
 
           <div class="ctaRow" id="download">
             <button class="btn primary" data-need-consent data-href="./download.html">下載封測版</button>
-            <a class="btn secondary" href="https://github.com/martin310365123-byte/PockitEdit/issues/new/choose">回報問題 / 提案</a>
+            <a class="btn secondary" href="https://github.com/martin310365123-byte/pockitEdit/issues/new/choose">回報問題 / 提案</a>
           </div>
         </div>
 
         <div class="codeCard">
           <div class="terminal">
-$ Pockitedit run \
+$ PockitEdit run \
   --process-all \
   --stt --stt-model small --stt-device cpu --stt-compute int8 \
   --lang zh \
@@ -740,7 +720,7 @@ $ Pockitedit run \
 
           <div class="card">
             <div class="kicker">個人 Pro</div>
-            <div class="price">Coming soon</div>
+            <div class="price">NT$ 490 / 月</div>
             <ul>
               <li>高品質 STT 模型</li>
               <li>批次處理與佇列</li>
@@ -769,7 +749,7 @@ $ Pockitedit run \
 
       <div class="panel">
         <form id="reviewForm" class="reviewForm" action="https://formspree.io/f/mreypzel" method="POST">
-          <input type="hidden" name="_redirect" value="https://Pockitedit.com/#reviews">
+          <input type="hidden" name="_redirect" value="https://pockitedit.com/#reviews">
           <input type="text" name="_gotcha" style="display:none">
 
           <div class="formGrid">
@@ -849,12 +829,12 @@ $ Pockitedit run \
         <div class="footLinks">
           <a href="./privacy.html">隱私權政策</a>
           <a href="./eula.html">授權 / EULA</a>
-          <a href="mailto:hello@Pockitedit.com">聯絡我們</a>
+          <a href="mailto:hello@pockitedit.com">聯絡我們</a>
         </div>
 
         <div class="ctaRow">
           <button class="btn primary" data-need-consent data-href="./download.html">下載封測版</button>
-          <a class="btn secondary" href="https://github.com/martin310365123-byte/PockitEdit/issues/new/choose">回報問題</a>
+          <a class="btn secondary" href="https://github.com/martin310365123-byte/pockitEdit/issues/new/choose">回報問題</a>
         </div>
       </div>
 
@@ -892,20 +872,19 @@ $ Pockitedit run \
     (function(){
       const img = document.getElementById('brandLogo');
       const candidates = [
-        "./assets/PockitEdit_logo_transparent_2000.png",
-        "./assets/PockitEdit_logo_transparent.png",
-        "./assets/logo-PockitEdit-1024.png",
+        "./assets/pockitEdit_logo_transparent_2000.png",
+        "./assets/pockitEdit_logo_transparent.png",
+        "./assets/logo-pockitEdit-1024.png",
         "./assets/logo.png",
         "./assets/logo-pocketeditor-transparent.png",
         "./logo.png"
       ];
       let i = 0;
-      function tryNext(){
-        if (i >= candidates.length) return;
-        img.src = candidates[i++];
-      }
-      img.onerror = tryNext;
-      tryNext();
+      img.onerror = function(){
+        if (i < candidates.length) {
+          img.src = candidates[i++];
+        }
+      };
     })();
 
     (function(){
